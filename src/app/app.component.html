@@ -1,0 +1,84 @@
+<div class="container-fluid mb-7">
+  <div class="row">
+    <div class="col">
+      <div
+        cdkDropList
+        class="dragdrop-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="dragdrop-item" *ngFor="let card of cards" cdkDrag>
+          {{ card.label }}
+        </div>
+      </div>
+
+        <div class="form-check mt-4">
+          <input
+            class="form-check-input"
+            id="defaultCheck1"
+            type="checkbox"
+            [(ngModel)]="isRecommendation"
+            (ngModelChange)="onIsRecommendation($event)"
+          />
+          <label class="form-check-label" for="defaultCheck1">
+            Show Recommendations
+          </label>
+        </div>
+
+        <div class="form-check mt-4">
+        <input
+          class="form-check-input"
+          id="defaultCheck2"
+          type="checkbox"
+          [(ngModel)]="isEditable"
+          (ngModelChange)="onIsEditable($event)"
+        />
+        <label class="form-check-label" for="defaultCheck2">
+          Content Editable
+        </label>
+      </div>
+
+        <hr class="mb-7">
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <div
+        role="button"
+        *ngFor="let card of cards"
+        (click)="onSlideChange($event, card.id)"
+      >
+        {{ card.label }}
+      </div>
+    </div>
+
+    <div class="col">
+      <ngb-carousel
+        #carousel
+        activeId="cards[0].id"
+        [interval]="0"
+        [showNavigationIndicators]="false"
+        [showNavigationArrows]="false"
+      >
+        <ng-container *ngFor="let card of cards; let index = index">
+          <ng-template ngbSlide id="{{ card.id }}">
+            <ng-container
+              *ngComponentOutlet="card.component; ndcDynamicInputs: card;"
+            ></ng-container>
+          </ng-template>
+        </ng-container>
+      </ngb-carousel>
+    </div>
+  </div>
+</div>
+
+<ng-container>
+  <ng-container *ngFor="let thumb of thumbs">
+    {{thumb}}
+    <img class="border" src="{{ thumb }}" width="150">
+  </ng-container>
+</ng-container>
+
+<div id="clone-node"></div>

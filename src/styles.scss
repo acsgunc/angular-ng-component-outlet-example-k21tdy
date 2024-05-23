@@ -1,0 +1,76 @@
+/* Add application styles & imports to this file! */
+
+.slide {
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 7px 7px -3px rgba(0,0,0, .5);
+
+  &-title {
+    margin: 5px 20px 0 20px;
+    border-bottom: 1px solid #dddedf;
+    display:flex;
+    align-items: center;
+  }
+
+  &-body {
+    min-height: 700px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  &-recommendation {
+    padding: 20px 40px;
+    background-color: var(--primary);
+    // min-height: 700px;
+
+    &.slide-recommendation-trend {
+      background-color: var(--magenta);
+    }
+
+    .card{
+      margin-top: 40px;
+    }
+  }
+}
+
+.rating-large {
+  .star {
+    font-size: 3.4rem;
+
+    @media screen and (max-width: 992px) {
+      font-size: 3rem;
+    }
+  }
+}
+
+[contenteditable="true"] {
+  border: 1px dashed magenta;
+}
+
+.star {
+  color: #0072b8 !important;
+  position: relative;
+  display: inline-block;
+  font-size: 2rem;
+  color: #000;
+  margin: 0 2px;
+
+  &.full {
+    color: #0072b8;
+
+    .half {
+      color: #0072b8;
+    }
+  }
+
+  .half {
+    color: #0072b8;
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+  }
+}
